@@ -545,25 +545,38 @@ function setupGallery(images) {
 
 
 /* ==========================================================================
-   CONTACT FORM SUBMISSION
+   CONTACT FORM SUBMISSION (FORMSUBMIT.CO KEYLESS INTEGRATION)
    ========================================================================== */
-const form = document.getElementById('connection-form');
-const successPanel = document.getElementById('form-success');
-const submitBtn = document.getElementById('submit-btn');
+document.getElementById('connection-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-window.handleFormSubmit = function(event) {
-    event.preventDefault();
-    
-    // Telemetry text transition
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.6';
-    submitBtn.querySelector('.btn-text').textContent = 'TRANSMITTING PAYLOAD...';
-    submitBtn.querySelector('i').className = 'fa-solid fa-circle-notch fa-spin';
+  const submitButton = event.target.querySelector('button[type="submit"]');
+  const originalHTML = submitButton.innerHTML;
+  submitButton.disabled = true;
+  submitButton.textContent = "TRANSMITTING...";
 
-    // Mock API request delay
+  fetch("https://formsubmit.co/ajax/aakibpatel144@gmail.com", {
+    method: "POST",
+    body: new FormData(event.target)
+  })
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Network response was not ok.');
+  })
+  .then(function(data) {
+    submitButton.textContent = "TRANSMISSION SENT SUCCESSFULLY. ACK_OK";
+    event.target.reset();
+  })
+  .catch(function(error) {
+    submitButton.textContent = "TRANSMISSION FAILED. RETRY";
+    console.error("Submission error:", error);
+  })
+  .finally(function() {
     setTimeout(() => {
-        form.reset();
-        form.style.display = 'none';
-        successPanel.style.display = 'block';
-    }, 1800);
-};
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalHTML;
+    }, 3000);
+  });
+});

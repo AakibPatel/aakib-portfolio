@@ -1541,29 +1541,66 @@ strong.highlight {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .section {
+        padding: 80px 0 40px 0;
+    }
+
+    .nav-container {
+        padding: 15px 16px;
+    }
+
     .nav-toggle {
         display: block;
     }
     
     .nav-menu {
         position: fixed;
-        top: 73px;
+        top: 60px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 73px);
+        height: calc(100vh - 60px);
         background: rgba(6, 9, 19, 0.95);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 30px;
         transition: var(--transition-normal);
         border-top: 1px solid var(--border-color);
     }
     
     .nav-menu.active {
         left: 0;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .hackathon-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .achievements-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .timeline-track {
@@ -1587,6 +1624,10 @@ strong.highlight {
         border-width: 8px 10px 8px 0;
         border-color: transparent var(--bg-surface) transparent transparent;
     }
+
+    .timeline-card {
+        padding: 16px;
+    }
     
     .footer-container {
         flex-direction: column;
@@ -1594,22 +1635,56 @@ strong.highlight {
     }
     
     .modal-close {
-        top: 20px;
-        right: 20px;
+        top: 15px;
+        right: 15px;
+        font-size: 2rem;
+    }
+
+    .modal-content-wrapper {
+        padding: 24px 16px;
+        margin: 10px;
+    }
+
+    .modal-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .modal-main-img-wrapper {
+        height: 240px;
+    }
+
+    .modal-text-container {
+        max-height: 280px;
     }
 }
 
 @media (max-width: 480px) {
     .section {
-        padding: 70px 0 40px 0;
+        padding: 60px 0 30px 0;
     }
     
+    .hero-name {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+    }
+
     .hex-outer-frame {
-        width: 280px;
-        height: 330px;
+        width: 260px;
+        height: 310px;
     }
-    
-    .skills-grid {
+
+    .contact-quick-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .contact-card {
+        padding: 10px 14px;
     }
 }
